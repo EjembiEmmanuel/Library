@@ -1,0 +1,73 @@
+@import "node_modules/bootstrap-icons/font/bootstrap-icons.css";
+
+@font-face {
+    font-family: headerFont;
+    src: url(assets/fonts/GreatVibes-Regular.ttf);
+  }
+
+body {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.header {
+    background-color: rgb(179, 71, 71);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.header-logo .bi {
+    color: white;
+    font-size: 50px;
+}
+
+.header-text h1 {
+    color: white;
+    font-family: headerFont;
+    font-size: 48px;
+    line-height: 10px;
+}
+
+.info {
+    background-color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    border-bottom: 2px solid rgb(179, 71, 71);
+}
+
+.info .no-books p,
+.info .read p,
+.info .unread p {
+    font-family:'Courier New', Courier, monospace;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 100px;
+}
+
+.container table {
+    border-collapse: collapse;
+}
+
+.container table th {
+    font-family:'Courier New', Courier, monospace;
+    font-size: larger;
+    padding: 10px;
+    border: 2px solid rgb(179, 71, 71);
+}
+
+.container table td {
+    font-family:'Courier New', Courier, monospace;
+    padding: 5px;
+    border: 2px solid rgb(179, 71, 71);
+}
+
