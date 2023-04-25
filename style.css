@@ -72,6 +72,20 @@ body {
     border: 2px solid rgb(179, 71, 71);
 }
 
+.container table td button {
+    background-color: transparent;
+    border: none;
+    transition: ease-in-out 0.5s;
+}
+
+.container table td button img {
+    height: 20px;
+}
+
+.container table td button:hover {
+    transform: scale(1.1);
+}
+
 .container .add-btn {
     display: flex;
     justify-content: end;

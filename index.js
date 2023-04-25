@@ -7,11 +7,12 @@ function Book(title, author, pages, readStatus) {
     this.readStatus = readStatus
 }
 
-function addBookLibrary(title, author, pages, status) {
+function addBook(title, author, pages, status) {
     let newBook = new Book(title, author, pages, status)
 
     myLibrary.push(newBook)
 }
+
 
 function displayBooks() {
     const table = document.querySelector('.table')
@@ -23,6 +24,7 @@ function displayBooks() {
             <th>Author</th>
             <th>Pages</th>
             <th>Status</th>
+            <th>&nbsp;</th>
         </tr>
     `
 
@@ -36,39 +38,37 @@ function displayBooks() {
                 <td>${book.author}</td>
                 <td>${book.pages}</td>
                 <td>${book.readStatus}</td>
+                <td><button id="deleteBtn${i}" data-key="${i}" onclick="deleteBook(this.dataset.key)"><img src="assets/icons/delete.svg" alt=""></button></td>
             </tr>   
         `
     }
 }
 
+function deleteBook(key) {
+    let index = Number(key)
 
-// Get the modal
+    myLibrary.splice(index, 1)
+
+    displayBooks()
+}
+
 let modal = document.getElementById("bookModal");
-
-// Get the button that opens the modal
-let btn = document.getElementById("addBtn");
-
-// Get the <span> element that closes the modal
+let addBtn = document.getElementById("addBtn");
 let span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
+addBtn.onclick = function() {
   modal.style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 }
-
-
 
 let bookForm = document.getElementById("bookForm")
 
@@ -80,10 +80,8 @@ bookForm.addEventListener("submit", (e) => {
     let pages = document.getElementById("pages");
     let status = document.getElementById("status");
  
-    addBookLibrary(title.value, author.value, pages.value, status.value)
+    addBook(title.value, author.value, pages.value, status.value)
     displayBooks()
-
-    console.log(myLibrary)
 
     modal.style.display = "none";
 });
