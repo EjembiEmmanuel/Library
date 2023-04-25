@@ -7,22 +7,24 @@ function Book(title, author, pages, readStatus) {
     this.readStatus = readStatus
 }
 
-function addBookLibrary() {
-    let title = prompt("Please enter the book's title", "Book title")
-    let author = prompt("Please enter the book's author", "Book author")
-    let pages = prompt("Please enter the book's number of pages ", "Number of book's pages")
-    let readStatus = prompt("Have you read this book? Enter Yes or No", "Yes or No")
-
-    let newBook = new Book(title, author, pages, readStatus)
+function addBookLibrary(title, author, pages, status) {
+    let newBook = new Book(title, author, pages, status)
 
     myLibrary.push(newBook)
 }
 
-addBookLibrary()
-addBookLibrary()
-
 function displayBooks() {
     const table = document.querySelector('.table')
+
+    table.innerHTML = `
+        <tr>
+            <th>&nbsp;</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Pages</th>
+            <th>Status</th>
+        </tr>
+    `
 
     for (let i = 0; i < myLibrary.length; i++) {
         const book = myLibrary[i]
@@ -36,27 +38,52 @@ function displayBooks() {
                 <td>${book.readStatus}</td>
             </tr>   
         `
-        // const bookCard = document.createElement('div')
-
-        // const bookTitle = document.createElement('h1')
-        // const bookAuthor = document.createElement('p')
-        // const pages = document.createElement('p')
-        // const readStatus = document.createElement('p')
-
-        // bookTitle.textContent = `Title: ${book.title}`
-        // bookAuthor.textContent = `Author: ${book.author}`
-        // pages.textContent = `Number of pages: ${book.pages}`
-        // readStatus.textContent = `Read: ${book.readStatus}`
-
-        // bookCard.appendChild(bookTitle)
-        // bookCard.appendChild(bookAuthor)
-        // bookCard.appendChild(pages)
-        // bookCard.appendChild(readStatus)
-
-        // body.appendChild(bookCard)
     }
 }
 
-displayBooks()
 
-console.log(myLibrary)
+// Get the modal
+let modal = document.getElementById("bookModal");
+
+// Get the button that opens the modal
+let btn = document.getElementById("addBtn");
+
+// Get the <span> element that closes the modal
+let span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+
+
+let bookForm = document.getElementById("bookForm")
+
+bookForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+  
+    let title = document.getElementById("title");
+    let author = document.getElementById("author");
+    let pages = document.getElementById("pages");
+    let status = document.getElementById("status");
+ 
+    addBookLibrary(title.value, author.value, pages.value, status.value)
+    displayBooks()
+
+    console.log(myLibrary)
+
+    modal.style.display = "none";
+});

@@ -31,15 +31,36 @@
     </header>
     <main class="container">
         <table class="table">
-            <tr>
-                <th>&nbsp;</th>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Pages</th>
-                <th>Status</th>
-            </tr>
+            
         </table>
+        <div class="add-btn">
+            <button id="addBtn">
+                <img src="assets/icons/add.svg" alt="">
+            </button>
+        </div>
     </main>
+
+    <!-- The Modal -->
+    <div id="bookModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="bookForm" action="#">
+                <h2>Add new book</h2>
+                <hr>
+                <label for="title">Title:</label><br>
+                <input type="text" id="title" name="title" required><br>
+                <label for="author">Author:</label><br>
+                <input type="text" id="author" name="author" required><br>
+                <label for="pages">Pages:</label><br>
+                <input type="text" id="pages" name="pages" required><br>
+                <label for="status">Status:</label><br>
+                <input type="text" id="status" name="status" required>
+                <button type="submit">Submit</button>
+                <button type="reset">Reset</button>
+            </form>
+        </div>
+    </div>
     
 
     <script src="index.js"></script>
