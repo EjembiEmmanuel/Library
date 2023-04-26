@@ -54,8 +54,11 @@
                 <input type="text" id="author" name="author" required><br>
                 <label for="pages">Pages:</label><br>
                 <input type="text" id="pages" name="pages" required><br>
-                <label for="status">Status:</label><br>
-                <input type="text" id="status" name="status" required>
+                <label for="status">Have you read this book?:</label><br>
+                <select id="status" name="status">
+                    <option value="Read">Yes</option>
+                    <option value="Unread">No</option>
+                  </select>
                 <button type="submit">Submit</button>
                 <button type="reset">Reset</button>
             </form>
