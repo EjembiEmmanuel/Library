@@ -79,6 +79,28 @@ function displayBooks() {
   }
 }
 
+function updateLog() {
+  let totalBooks = document.querySelector(".no-books").firstElementChild;
+  let readBooksElement = document.querySelector(".read").firstElementChild;
+  let unreadBoksElement = document.querySelector(".unread").firstElementChild;
+
+  totalBooks.textContent = `Total number of books: ${myLibrary.length}`;
+
+  let readBooks = 0;
+  let unreadBooks = 0;
+
+  for (let i = 0; i < myLibrary.length; i++) {
+    if (myLibrary[i].readStatus === "Read") {
+      readBooks += 1;
+    } else {
+      unreadBooks += 1;
+    }
+  }
+
+  readBooksElement.textContent = `Read: ${readBooks}`;
+  unreadBoksElement.textContent = `Unread: ${unreadBooks}`;
+}
+
 function toggleStatus(id) {
   let toggleBtn = document.getElementById(id);
   let index = Number(toggleBtn.dataset.key);
@@ -89,6 +111,7 @@ function toggleStatus(id) {
     myLibrary[index].readStatus = "Unread";
   }
 
+  updateLog();
   displayBooks();
 }
 
@@ -97,6 +120,7 @@ function deleteBook(key) {
 
   myLibrary.splice(index, 1);
 
+  updateLog();
   displayBooks();
 }
 
@@ -129,6 +153,8 @@ bookForm.addEventListener("submit", (e) => {
   let status = document.getElementById("status");
 
   addBook(title.value, author.value, pages.value, status.value);
+
+  updateLog();
   displayBooks();
 
   modal.style.display = "none";
