@@ -1,19 +1,25 @@
 let myLibrary = [];
 
-function Book(title, author, pages) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-}
+class Book {
+  constructor(title, author, pages) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+  }
 
-Book.prototype.readStatus = function (readStatus) {
-  this.readStatus = readStatus;
-};
+  get readStatus() {
+    return this.bookStatus;
+  }
+
+  set readStatus(readStatus) {
+    this.bookStatus = readStatus;
+  }
+}
 
 function addBook(title, author, pages, status) {
   let newBook = new Book(title, author, pages);
 
-  newBook.readStatus(status);
+  newBook.readStatus = status;
 
   myLibrary.push(newBook);
 }
@@ -156,6 +162,7 @@ bookForm.addEventListener("submit", (e) => {
 
   updateLog();
   displayBooks();
+  console.log(myLibrary);
 
   modal.style.display = "none";
 });
